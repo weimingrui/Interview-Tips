@@ -2,10 +2,12 @@
  * @Author: Arthur
  * @Date: 2020-05-08 14:52:45
  * @LastEditors: Arthur
- * @LastEditTime: 2020-05-08 14:55:32
+ * @LastEditTime: 2020-05-08 17:33:27
  * @Description: file content
  */
-
+/*
+arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]  
+*/ 
 function HeapSort (arr) {
     const length = arr.length
 
