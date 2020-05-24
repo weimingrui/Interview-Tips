@@ -127,3 +127,109 @@ JS中通过var定义全局变量与在window对象上直接定义属性的区别
 1.全局变量不能通过delete删除，而window属性上定义的变量可以通过delete删除
 2.尝试访问未声明的变量会报错，xxx is not defined。但是通过查询window查询，可以知道某个可能未声明的变量是否存在，不会报错，只会显示undefined。（这一点可以用预编译解释，var声明的变量会提升声明到顶部）
 3.在函数中使用var定义的变量是局部变量。有时想要在外部也访问到函数里面的变量，就需要定义window对象属性
+
+浏览器核心
+Trident(IE内核) Gecko(Firefox内核) Presto(Opera前内核) (已废弃) Webkit(Safari内核,Chrome内核原型,开源) Blink是一个由Google和Opera Software开发的浏览器排版引擎，Google计划将这个渲染引擎作为Chromium计划的一部分
+
+
+**<base\/>** 标签，重定向html文件里的相对路径，省略相对地址也可显示
+
+substring(startIndex,endIndex),substr(startIndex,stringLength)
+
+在转换不同的数据类型时，相等操作符遵循下列基本规则：
+
+1. 如果有一个操作数是布尔值，则在比较相等性之前，将其转换为数值；
+
+2. 如果一个操作数是字符串，另一个操作数是数值，在比较之前先将字符串转换为数值；
+
+3. 如果一个操作数是对象，另一个操作数不是，则调用对象的 valueOf() 方法，用得到的基本类型值按照前面的规则进行比较；
+
+4. 如果有一个操作数是 NaN，无论另一个操作数是什么，相等操作符都返回 false；
+
+5. 如果两个操作数都是对象，则比较它们是不是同一个对象。如果指向同一个对象，则相等操作符返回 true；
+
+6. 在比较相等性之前，不能将 null 和 undefined 转成其他值。
+
+7. null 和 undefined 是相等的。
+
+上面阐述的 1、2、3 三条规则，总结成一句话就是：
+
+如果相等操作符两边的操作数，不包含 null 或者 undefined，且两个操作数不全是对象，
+
+在执行相等比较之前，会先调用 Number() 将两个操作数强制转为 Number 类型，然后进行比较;
+
+在 JavaScript 中，Object、Array、Function、RegExp、Date 都是引用类型
+
+声明引用类型的时候，变量名保存在 js 的栈内存里面，而对应的值保存在堆内存里面
+
+而这个变量在栈内存中实际保存的是：这个值在堆内存中的地址，也就是指针.
+
+
+判断数据类型
+typeof()，instanceof，Object.prototype.toString.call()
+
+
+1.防抖节流
+(1).节流
+在 n 秒内只会执行一次，所以节流会稀释函数的执行频率
+
+(2). 防抖
+按最后一次算。比如说“停止输入5s后才发送请求”
+
+数组去重
+array.filter 
+1 双重循环
+
+2 indexOf去重
+
+3 Map
+Map.has(a)&&Map.set(a,1)
+
+4 new Set(array)
+Array.from(new Set(array))
+
+5 Object,key-value对应
+obj.hasOwnProperty(typeof item + JSON.stringfy(item))&& obj[typeof item + JSON.stringfy(item)]=true;
+
+6 排序后，每个元素比较之前的所有元素
+
+
+数组展开
+1.递推
+function flat1 (arr) {
+    let result = []
+    arr.forEach(element => {
+        if (Array.isArray(element)) {
+            result = result.concat(flat1(element))
+        } else {
+            result.push(element)
+        }
+    });
+    return result
+}
+
+2. toString
+3. reduce
+function flat3 (arr) {
+    // 本质和 flat1 一样的，都是递归
+    return arr.reduce((pre, next) => {
+        return pre.concat(Array.isArray(next) ? flat3(next) : next)
+    }, [])
+}
+
+4.rest运算符
+function flat4 (arr) {
+    while (arr.some(item => Array.isArray(item))) {
+        // 相当于 [].concat('1', 2, [3, 4])
+        // concat 方法本身就会把参数中的数组展开
+        arr = [].concat(...arr);
+    }
+    return arr;
+}
+5. Array.flat
+
+function flat5 (arr: any[]) {
+    // flat() 方法会移除数组中的空项
+    return arr.flat(Infinity)
+}
+
