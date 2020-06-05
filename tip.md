@@ -242,3 +242,23 @@ function flat5 (arr: any[]) {
 实现思路：通过比对时间差值来完成判断是否执行函数
 这两个技巧主要是用在一些高频操作的场合，比如input事件、scroll事件、resize事件等等
 
+
+Set、Map、WeakSet 和 WeakMap 的区别
+Set和Map可以遍历，而WeakSet和WeakMap不可被遍历
+
+Set：成员唯一，无序且不重复
+
+Map：键值对集合
+
+WeakSet和WeakMap的key都是弱引用，可被垃圾回收机制回收
+
+WeakSet的成员只能是对象，否则报错
+
+WeakMap的键只能是对象，否则报错
+
+Set和Map都具有iterator接口
+
+JSON和Map的区别:
+JSON是字符串-值的对应
+Map是值-值的对应
+值可以是任意数据类型
