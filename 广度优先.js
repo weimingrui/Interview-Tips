@@ -2,7 +2,7 @@
  * @Author: Arthur
  * @Date: 2020-06-05 16:44:00
  * @LastEditors: Arthur
- * @LastEditTime: 2020-06-05 16:48:16
+ * @LastEditTime: 2020-06-05 17:02:57
  * @Description: dom的遍历方式:
  * 顾名思义，对顶点A的未被访问过的领节点进行探索，
  * 然后继续探索未被探索的领节点的领节点，
@@ -49,18 +49,18 @@ let widthTraversal2 = (node) => {
     let nodes = []
     let stack = []
     if (node) {
-        stack.push(node)
+        stack.push(node) // 堆栈 + 1
         while (stack.length) {
-            let item = stack.shift()
+            let item = stack.shift(); // 堆栈 - 1
             let children = item.children
-            nodes.push(item)
+            nodes.push(item) // 叠加 dom
             // 队列，先进先出
             // nodes = [] stack = [parent]
             // nodes = [parent] stack = [child1,child2,child3]
             // nodes = [parent, child1] stack = [child2,child3,child1-1,child1-2]
             // nodes = [parent,child1,child2]
             for (let i = 0; i < children.length; i++) {
-                stack.push(children[i])
+                stack.push(children[i]) // 堆栈 + n
             }
         }
     }
