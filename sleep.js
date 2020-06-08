@@ -2,7 +2,7 @@
  * @Author: Arthur
  * @Date: 2020-05-24 22:05:35
  * @LastEditors: Arthur
- * @LastEditTime: 2020-06-04 17:11:55
+ * @LastEditTime: 2020-06-07 00:58:51
  * @Description: 模拟sleep ，
  * 主要是利用promise 的状态不受外界影响实现， await ，和构造函数也可以实现
  */ 
