@@ -2,7 +2,7 @@
  * @Author: Arthur
  * @Date: 2020-06-05 16:44:00
  * @LastEditors: Arthur
- * @LastEditTime: 2020-06-05 17:02:57
+ * @LastEditTime: 2020-10-14 15:00:08
  * @Description: dom的遍历方式:
  * 顾名思义，对顶点A的未被访问过的领节点进行探索，
  * 然后继续探索未被探索的领节点的领节点，
@@ -65,4 +65,5 @@ let widthTraversal2 = (node) => {
         }
     }
     return nodes
+    
 }
