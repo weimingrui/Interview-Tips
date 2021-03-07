@@ -2,11 +2,11 @@
  * @Author: Arthur
  * @Date: 2021-03-07 21:53:07
  * @LastEditors: Arthur
- * @LastEditTime: 2021-03-07 22:09:01
+ * @LastEditTime: 2021-03-07 22:45:47
  * @Description: file content
  */
 Promise.myRace = function(arr) {
-    new Promise((resolve,reject)=>{
+    return new Promise((resolve,reject)=>{
         arr.forEach(promise=>{
             promise.then(res=>{
                 return resolve(res);
