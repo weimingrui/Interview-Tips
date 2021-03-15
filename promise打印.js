@@ -2,10 +2,22 @@
  * @Author: Arthur
  * @Date: 2021-03-07 22:33:33
  * @LastEditors: Arthur
- * @LastEditTime: 2021-03-07 22:43:46
+ * @LastEditTime: 2021-03-11 09:19:28
  * @Description: file content
  */
-new Promise((res,rej)=>{rej(1123)}).then(res=>{console.log('res',res);return res;},rej=>{console.log('rej1',rej);return 123}).then(res=>{console.log(res)},rej=>{console.log('rej2',rej)}).catch(err=>{console.log(err)})
+new Promise((res,rej)=>{
+    rej(1123)
+}).then(res=>{
+    console.log('res',res);
+    return res;
+},rej=>{
+        console.log('rej1',rej);
+        return 123
+    }).then(res=>{
+        console.log(res)
+    },rej=>{
+        console.log('rej2',rej)
+    }).catch(err=>{console.log(err)})
 // rej1 123
 // 123
 new Promise((res,rej)=>{rej(1123)}).then(res=>{console.log('res',res);return res;},rej=>{console.log('rej1',rej);throw new Error(123);return 'rej1'}).then(res=>{console.log('res2',res)},rej=>{console.log('rej2',rej)}).catch(err=>{console.log('err',err)})
@@ -43,3 +55,12 @@ Promise.all([2342,new Promise((res,rej)=>{res('testreject')}), new Promise((res,
 //     at <anonymous>:1:94
 //     at new Promise (<anonymous>)
 //     at <anonymous>:1:64
+try{ 
+    new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            throw new Error(12223)
+        }) 
+    })
+}catch(e){
+    console.log('catch error',e)
+}
