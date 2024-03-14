@@ -95,6 +95,42 @@ Object.prototype.toString.call()
 ## 7. new 操作符做了哪些操作
 
 ## 8.Event Loop
+浏览器内核是多线程的，在内核控制下各线程相互配合以保持同步，一个浏览器通常由以下常驻线程组成：
+
+GUI 渲染线程：解析 HTML、CSS 等。在 JavaScript 引擎线程运行脚本期间，GUI 渲染线程处于挂起状态，也就是被 “冻结” 了。
+JavaScript 引擎线程：负责处理 JavaScript 脚本。
+定时触发器线程：setTimeout、setInterval 等。事件触发线程会将计数完毕后的事件加入到任务队列的尾部，等待 JS 引擎线程执行。
+事件触发线程：负责将准备好的事件交给 JS 引擎执行。
+异步 http 请求线程：负责执行异步请求之类函数的线程，例如 Promise.then()、ajax 等。
+
+**JavaScript 从 script 开始读取，然后不断循环，从 “任务队列” 中读取执行事件的过程，就是 事件循环**
+
+Event Loop 执行过程如下：
+    1.一开始整个脚本 script 作为一个宏任务执行
+    2.执行过程中，同步代码 直接执行，宏任务 进入宏任务队列，微任务 进入微任务队列。
+    3.当前宏任务执行完出队，检查微任务列表，有则依次执行，直到全部执行完毕。
+    4.执行浏览器 UI 线程的渲染工作。
+    5.检查是否有 Web Worker 任务，有则执行。
+    6.执行完本轮的宏任务，回到步骤 2，依次循环，直到宏任务和微任务队列为空。
+
+事件循环中的异步队列有两种：宏任务队列（MacroTask）和 微任务队列（MicroTask）。
+Web Worker 是运行在后台的 JS，独立于其他脚本，不会影响页面的性能。
+宏任务队列可以有多个，微任务队列只有一个。
+宏任务 包括：
+    script
+    setTimeout
+    setInterval
+    setImmediate
+    I/O
+    UI rendering
+
+微任务 包括：
+    MutationObserver
+    Promise.then()/catch()
+    以 Promise 为基础开发的其他技术，例如 fetch API
+    V8 的垃圾回收过程
+    Node 独有的 process.nextTick
+
 
 ## 9.DOM 的创建 获取 添加 删除
 createElement getElementById appendChild removeChild
