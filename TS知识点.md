@@ -1,4 +1,6 @@
-1. 基本数据类型
+## 文档链接：https://www.tslang.cn/docs/home.html
+
+## 1. 基本数据类型
     number、string、boolean、null、undefined、Array、Object、
     Touple（元组类型）、Enum（枚取类型）、void、never
 ```ts
@@ -36,7 +38,7 @@
     console.log(x[5].toString()); // OK, 'string' 和 'number' 都有 toString
     x[6] = true; // Error, 布尔不是(string | number)类型
 ```
-2. extend、interface、implement，使用这两个实现类型混淆
+## 2. extend、interface、implement，使用这两个实现类型混淆
 ```ts
 interface ClockInterface {
     currentTime: Date;
@@ -52,7 +54,7 @@ class Clock implements ClockInterface {
 }
 ```
 
-3. 高级类型： 交叉类型、联合类型。& 、|
+## 3. 高级类型： 交叉类型、联合类型。& 、|
 
 ```ts
 // 交叉类型
@@ -125,7 +127,7 @@ const rect = new Rectangle(10, 5);
 console.log(rect.area());  
 console.log(rect.perimeter());
 ```
-4.namespace 和 module的使用场景，namespace的缺陷。
+## 4.namespace 和 module的使用场景，namespace的缺陷。
 ```ts
 namespace MyNamespace {  
     export class MyClass {  
@@ -155,7 +157,7 @@ const instance = new MyClass('Bob');
 instance.greet();
 ```
 
-5.泛型< T >、infer
+## 5.泛型< T >、infer
 
 
 ```ts
@@ -175,7 +177,10 @@ type MyType = {
   
 type PartialMyType = Partial<MyType>; // { a?: string; b?: number; }
 ```
-7. 函数
+## 6. Syboml、迭代器、类型推断、类型兼容
+可选参数及剩余参数、重载
+
+## 7. 函数
 ```
 interface SearchFunc {
   (source: string, subString: string): boolean;
